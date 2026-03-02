@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'onboarding_step1.dart';
 import 'onboarding_step2.dart';
-import 'onboarding_step3.dart'; // هننشئ الملف ده دلوقتي
+import 'onboarding_step3.dart'; 
 
 class OnboardingMain extends StatefulWidget {
   const OnboardingMain({super.key});
@@ -13,7 +13,6 @@ class OnboardingMain extends StatefulWidget {
 class _OnboardingMainState extends State<OnboardingMain> {
   final PageController _pageController = PageController();
 
-  // وظيفة السكيب الجديدة: تنقله للسكرين اللي بعدها
   void _onSkip() {
     _pageController.nextPage(
       duration: const Duration(milliseconds: 400),
@@ -40,11 +39,11 @@ class _OnboardingMainState extends State<OnboardingMain> {
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        physics: const BouncingScrollPhysics(), // مسموح بالسحب بالإيد برضه لو حابة
+        physics: const BouncingScrollPhysics(), //دي علشان اقدر اسحب بالايد
         children: [
           OnboardingStep1(onNext: _onNext, onSkip: _onSkip),
           OnboardingStep2(onNext: _onNext, onBack: _onBack, onSkip: _onSkip),
-          OnboardingStep3(onBack: _onBack), // آخر سكرين مفيهاش سكيب غالباً أو السكيب بيقفل
+          OnboardingStep3(onBack: _onBack), 
         ],
       ),
     );

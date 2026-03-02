@@ -44,7 +44,6 @@ class OnboardingStep3 extends StatelessWidget {
               style: TextStyle(fontSize: 16, color: Color(0xFF6B7280), height: 1.5),
             ),
             const Spacer(),
-            // Dots (Third active)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

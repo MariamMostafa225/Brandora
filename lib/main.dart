@@ -13,11 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Brandora App',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-        useMaterial3: true,
-      ),
-      // هنا بننادي على الشاشة اللي عملناها
+      theme: ThemeData(primarySwatch: Colors.indigo, useMaterial3: true),
       home: const OnboardingMain(),
     );
   }

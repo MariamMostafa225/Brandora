@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class OnboardingStep2 extends StatelessWidget {
   final VoidCallback onNext;
   final VoidCallback onBack;
-  final VoidCallback onSkip; // أضفنا السطر ده هنا
+  final VoidCallback onSkip; 
 
   const OnboardingStep2({
     super.key, 
     required this.onNext, 
     required this.onBack, 
-    required this.onSkip, // وأضفناها هنا كمان
+    required this.onSkip, 
   });
 
   @override
@@ -32,7 +32,6 @@ class OnboardingStep2 extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        // أضفنا زرار السكيب في الـ App Bar زي الصورة
         actions: [
           TextButton(
             onPressed: onSkip, 
@@ -51,7 +50,6 @@ class OnboardingStep2 extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            // Illustration Image Container
             Container(
               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.4,
@@ -87,7 +85,6 @@ class OnboardingStep2 extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            // Pagination Dots (Second dot active)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -106,7 +103,6 @@ class OnboardingStep2 extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 32),
-            // Next Button with Arrow
             SizedBox(
               width: double.infinity,
               height: 56,
@@ -133,7 +129,6 @@ class OnboardingStep2 extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            // Back Text Button
             TextButton(
               onPressed: onBack,
               child: const Text(

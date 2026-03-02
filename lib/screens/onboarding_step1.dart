@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class OnboardingStep1 extends StatelessWidget {
-  // بنعرف المتغيرات اللي هتستقبل الأوامر من الملف الرئيسي
   final VoidCallback onNext;
   final VoidCallback onSkip;
 
@@ -20,11 +19,10 @@ class OnboardingStep1 extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             children: [
-              // زرار الـ Skip
               Align(
                 alignment: Alignment.topRight,
                 child: TextButton(
-                  onPressed: onSkip, // بننادي الفانكشن اللي جاية من بره
+                  onPressed: onSkip, 
                   child: const Text(
                     'SKIP1',
                     style: TextStyle(
@@ -38,7 +36,6 @@ class OnboardingStep1 extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              // حاوية الصورة
               Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.4,
@@ -78,7 +75,6 @@ class OnboardingStep1 extends StatelessWidget {
 
               const Spacer(),
 
-              // النقط (الأولى هي النشطة)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -99,12 +95,11 @@ class OnboardingStep1 extends StatelessWidget {
 
               const SizedBox(height: 32),
 
-              // زرار Next
               SizedBox(
                 width: double.infinity,
                 height: 56,
                 child: ElevatedButton(
-                  onPressed: onNext, // بننادي الفانكشن اللي جاية من بره
+                  onPressed: onNext,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF3F51B5),
                     shape: RoundedRectangleBorder(
