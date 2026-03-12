@@ -24,7 +24,7 @@ class OnboardingStep1 extends StatelessWidget {
                 child: TextButton(
                   onPressed: onSkip, 
                   child: const Text(
-                    'SKIP1',
+                    'SKIP',
                     style: TextStyle(
                       color: Color(0xFF3F51B5),
                       fontWeight: FontWeight.bold,
