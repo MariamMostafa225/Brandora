@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//انا عامله هنا validation
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -9,6 +10,11 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscurePassword = true;
+
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   final Color primaryColor = const Color(0xFF3F51B5);
   final Color backgroundColor = const Color(0xFFF6F8FB);
@@ -21,192 +27,225 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: Center(
-          child: SingleChildScrollView(//دي علشان السكرول لما الكيبورد يفتح
-            padding: const EdgeInsets.symmetric(//ده بيعمل مسافات من فوق وتحت ويمين وشمال
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(
               horizontal: 24.0,
               vertical: 16.0,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,//تخلي العناصر تمتد بعرض الشاشة
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: primaryColor,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: const Icon(
-                        Icons.campaign,
-                        color: Colors.white,
-                        size: 32,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Brandora',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: textColor,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40),
-
-                Text(
-                  'Welcome Back',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: textColor,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Login to your Brandora account',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15, color: greyTextColor),
-                ),
-                const SizedBox(height: 40),
-
-                Text(
-                  'Email Address',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: textColor,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                _buildTextField(
-                  hintText: 'name@example.com',
-                  prefixIcon: Icons.email_outlined,
-                ),
-                const SizedBox(height: 20),
-
-                Text(
-                  'Password',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: textColor,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                _buildTextField(
-                  hintText: 'Enter your password',
-                  prefixIcon: Icons.lock_outline,
-                  isPassword: true,
-                ),
-
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      minimumSize: Size.zero,
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                        color: primaryColor,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 24),
-
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: const Text(
-                    'Sign In',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const SizedBox(height: 32),
-
-                Row(
-                  children: [
-                    Expanded(
-                      child: Divider(color: Colors.grey.shade300, thickness: 1),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        'OR CONTINUE WITH',
-                        style: TextStyle(
-                          color: greyTextColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 1,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: const Icon(
+                          Icons.campaign,
+                          color: Colors.white,
+                          size: 32,
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Divider(color: Colors.grey.shade300, thickness: 1),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildSocialButton(
-                        icon: Icons.g_mobiledata,
-                        label: 'Google',
-                        iconColor: Colors.black,
+                      const SizedBox(height: 8),
+                      Text(
+                        'Brandora',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: textColor,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: _buildSocialButton(
-                        icon: Icons.apple,
-                        label: 'Apple',
-                        iconColor: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40),
+                    ],
+                  ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Don't have an account? ",
-                      style: TextStyle(color: greyTextColor),
+                  const SizedBox(height: 40),
+
+                  Text(
+                    'Welcome Back',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
                     ),
-                    GestureDetector(
-                      onTap: () {},
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  Text(
+                    'Login to your Brandora account',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15, color: greyTextColor),
+                  ),
+
+                  const SizedBox(height: 40),
+
+                  Text(
+                    'Email Address',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: textColor,
+                    ),
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  _buildTextField(
+                    hintText: 'name@example.com',
+                    prefixIcon: Icons.email_outlined,
+                    controller: emailController,
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  Text(
+                    'Password',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: textColor,
+                    ),
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  _buildTextField(
+                    hintText: 'Enter your password',
+                    prefixIcon: Icons.lock_outline,
+                    controller: passwordController,
+                    isPassword: true,
+                  ),
+
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        minimumSize: Size.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
                       child: Text(
-                        'Sign up',
+                        'Forgot Password?',
                         style: TextStyle(
                           color: primaryColor,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
-                  ],
-                ),
-              ],
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Login Successful")),
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      elevation: 0,
+                    ),
+                    child: const Text(
+                      'Sign In',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 32),
+
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          color: Colors.grey.shade300,
+                          thickness: 1,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          'OR CONTINUE WITH',
+                          style: TextStyle(
+                            color: greyTextColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 1,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          color: Colors.grey.shade300,
+                          thickness: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildSocialButton(
+                          icon: Icons.g_mobiledata,
+                          label: 'Google',
+                          iconColor: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: _buildSocialButton(
+                          icon: Icons.apple,
+                          label: 'Apple',
+                          iconColor: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 40),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't have an account? ",
+                        style: TextStyle(color: greyTextColor),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Text(
+                          'Sign up',
+                          style: TextStyle(
+                            color: primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -217,6 +256,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildTextField({
     required String hintText,
     required IconData prefixIcon,
+    required TextEditingController controller,
     bool isPassword = false,
   }) {
     return Container(
@@ -232,8 +272,28 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
       ),
-      child: TextField(
+      child: TextFormField(
+        controller: controller,
         obscureText: isPassword ? _obscurePassword : false,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return isPassword ? "Password is required" : "Email is required";
+          }
+
+          if (!isPassword) {
+            if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+              return "Enter a valid email";
+            }
+          }
+
+          if (isPassword) {
+            if (value.length < 6) {
+              return "Password must be at least 6 characters";
+            }
+          }
+
+          return null;
+        },
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
